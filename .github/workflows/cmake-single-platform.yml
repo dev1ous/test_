@@ -20,6 +20,16 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Set up Conan profile
+      run: |
+        echo "[settings]" > conan_profile.txt
+        echo "os=Windows" >> conan_profile.txt
+        echo "arch=x86_64" >> conan_profile.txt
+        echo "compiler=Visual Studio" >> conan_profile.txt
+        echo "compiler.version=16" >> conan_profile.txt
+        echo "compiler.runtime=MD" >> conan_profile.txt
+        echo "build_type=Release" >> conan_profile.txt
+
     - name: Install dependencies with Conan
       run: | 
         python -m pip install --upgrade pip 
